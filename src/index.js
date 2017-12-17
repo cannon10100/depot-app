@@ -19,7 +19,6 @@ class Servers extends React.Component {
 
     tick() {
         // Fetch servers
-        console.log(this)
         fetch("http://localhost:4000/servers")
         .then((results) => {
             return results.json();
@@ -28,7 +27,7 @@ class Servers extends React.Component {
                 return (
                     <tr id={server_uuid}>
                         <td>
-                            <a href={"http://localhost:4000/server/" + server_uuid}>{server_uuid}</a>
+                            <a href={"server/" + server_uuid}>{server_uuid}</a>
                         </td>
                         <td>{data[server_uuid].name}</td>
                         <td>{data[server_uuid].ip}</td>
@@ -92,7 +91,7 @@ class Configs extends React.Component {
                 return (
                     <tr id={config_uuid}>
                         <td>
-                            <a href={"http://localhost:4000/config/" + config_uuid}>{config_uuid}</a>
+                            <a href={"config/" + config_uuid}>{config_uuid}</a>
                         </td>
                         <td>{data[config_uuid].name}</td>
                         <td>{status.done ? status.done : "Not Started"}</td>

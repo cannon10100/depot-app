@@ -12,8 +12,52 @@ body {
     background-color: #ADD8E6;
 }
 
+.server td {
+    padding: 5px;
+    line-height: 1.5;
+}
+
+.server th {
+    background-color: #ADD8E6;
+}
+
+.config td {
+    padding: 5px;
+    line-height: 1.5;
+}
+
+.config th {
+    background-color: #ADD8E6;
+}
+
 .depot section {
     margin: 0 10px;
+}
+
+.upload input {
+    display: block;
+}
+
+.upload textarea {
+    display: block;
+}
+
+.upload label {
+    display: block;
+    margin: 10px;
+}
+
+.upload [type=submit] {
+    width: 100px;
+    margin: 10px;
+}
+
+.upload form {
+    display: flex;
+    flex-direction: column;
+    flew-wrap: wrap;
+    justify-content: space-around;
+    width: 200px;
 }
 
 .depot {
