@@ -1,0 +1,24 @@
+body {
+  font: 14px "Century Gothic", Futura, sans-serif;
+  margin: 20px;
+}
+
+.depot td {
+    padding: 5px;
+    line-height: 1.5;
+}
+
+.depot th {
+    background-color: #ADD8E6;
+}
+
+.depot section {
+    margin: 0 10px;
+}
+
+.depot {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
