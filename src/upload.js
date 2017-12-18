@@ -1,6 +1,6 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
 import './index.css';
+import { Navbar } from './navbar';
 
 export class ConfigForm extends React.Component {
     constructor(props) {
@@ -51,24 +51,26 @@ experiment:\n\
 
     handleSubmit(event) {
         alert('A name and body were submitted: ' + this.state.name + ", " + this.state.body);
-        event.preventDefault();
     }
 
     render() {
         return (
-            <div className="upload">
-                <h1>Upload Config</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                      Name:
-                      <input type="text" value={this.state.name} onChange={this.handleNameChange} />
-                    </label>
-                    <label>
-                        Config Body:
-                        <textarea rows="20" cols="80" value={this.state.body} onChange={this.handleBodyChange}/>
-                    </label>
-                    <input type="submit" value="Submit" />
-                </form>
+            <div className="total">
+                <Navbar />
+                <div className="upload">
+                    <h1>Upload Config</h1>
+                    <form onSubmit={this.handleSubmit} action="http://localhost:4000/config/upload" method="post">
+                        <label>
+                          Name:
+                          <input type="text" value={this.state.name} onChange={this.handleNameChange} name="name"/>
+                        </label>
+                        <label>
+                            Config Body:
+                            <textarea rows="20" cols="80" value={this.state.body} onChange={this.handleBodyChange} name="body"/>
+                        </label>
+                        <input type="submit" value="Submit" className="btn btn-1 btn-1a"/>
+                    </form>
+                </div>
             </div>
         );
     }

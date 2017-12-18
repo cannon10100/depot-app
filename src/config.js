@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
 import './index.css';
 
 export class Config extends React.Component {
@@ -21,7 +20,6 @@ export class Config extends React.Component {
             let properties = Object.keys(data).map(property => {
                 let value = data[property];
                 if (value !== null && typeof value === 'object') {
-                    //value = "<Status>";
                     return;
                 }
 

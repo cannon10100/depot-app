@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ConfigForm } from './upload';
 import { Config } from './config';
 import { Server } from './server';
+import { Navbar } from './navbar';
 
 class Servers extends React.Component {
     constructor(props) {
@@ -50,22 +51,30 @@ class Servers extends React.Component {
     }
 
     render() {
-        return (
-            <section className="servers">
-                <h1>Servers</h1>
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>IP</th>
-                            <th>Status</th>
-                        </tr>
-                        {this.state.servers}
-                    </tbody>
-                </table>
-            </section>
-        )
+        if (this.state.servers.length === 0) {
+            return (
+                <section className="servers">
+                    <h1>No Servers Found</h1>
+                </section>
+            )
+        } else {
+            return (
+                <section className="servers">
+                    <h1>Servers</h1>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>IP</th>
+                                <th>Status</th>
+                            </tr>
+                            {this.state.servers}
+                        </tbody>
+                    </table>
+                </section>
+            )
+        }
     }
 }
 
@@ -76,12 +85,12 @@ class Configs extends React.Component {
             configs: [],
         }
         this.tick = this.tick.bind(this);
+        this.deleteButton = this.deleteButton.bind(this);
     }
     
 
     tick() {
         // Fetch servers
-        console.log(this)
         fetch("http://localhost:4000/configs")
         .then((results) => {
             return results.json();
@@ -90,6 +99,9 @@ class Configs extends React.Component {
                 let status = data[config_uuid].status;
                 return (
                     <tr id={config_uuid}>
+                        <td>
+                            <i className="fa fa-minus-circle" id={config_uuid} onClick={this.deleteButton}></i>
+                        </td>
                         <td>
                             <a href={"config/" + config_uuid}>{config_uuid}</a>
                         </td>
@@ -114,24 +126,48 @@ class Configs extends React.Component {
         clearInterval(this.interval);
     }
 
+    deleteButton(event) {
+        if (window.confirm("Are you sure you want to delete config " + event.target.id + "?")) {
+            let form = new FormData();
+            form.append("config_id", event.target.id);
+            fetch("http://localhost:4000/config/delete", {
+                method: "POST",
+                body: form
+            }).then(() => {
+                this.tick();  
+            });
+        } else {
+            return;
+        }
+    }
+
     render() {
-        return (
-            <section className="configs">
-                <h1>Configs</h1>
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Done</th>
-                            <th>Ep #</th>
-                            <th>Server</th>
-                        </tr>
-                        {this.state.configs}
-                    </tbody>
-                </table>
-            </section>
-        )
+        if (this.state.configs.length === 0) {
+            return (
+                <section className="configs">
+                    <h1>No Configs Found</h1>
+                </section>
+            )
+        } else {
+            return (
+                <section className="configs">
+                    <h1>Configs</h1>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Delete</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Done</th>
+                                <th>Ep #</th>
+                                <th>Server</th>
+                            </tr>
+                            {this.state.configs}
+                        </tbody>
+                    </table>
+                </section>
+            )
+        }
     }
 }
 
@@ -139,6 +175,7 @@ export class Depot extends React.Component {
     render() {
         return (
             <div className="depot">
+                <Navbar />
                 <Servers />
                 <Configs />
             </div>
