@@ -20,6 +20,10 @@ body {
     background-color: #ADD8E6;
 }
 
+.server {
+    margin: 40px auto;
+}
+
 .config td {
     padding: 5px;
     line-height: 1.5;
@@ -27,6 +31,10 @@ body {
 
 .config th {
     background-color: #ADD8E6;
+}
+
+.config {
+    margin: 40px auto;
 }
 
 .configs i {

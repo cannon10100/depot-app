@@ -1,5 +1,6 @@
 import React from 'react'
 import './index.css';
+import { Navbar } from './navbar';
 
 export class Config extends React.Component {
     constructor(props) {
@@ -32,6 +33,8 @@ export class Config extends React.Component {
                     properties.push(make_prop(property, "Null"));
                 } else if (value === false) {
                     properties.push(make_prop(property, "False"));
+                } else if (value === true) {
+                    properties.push(make_prop(property, "True"));
                 } else {
                     properties.push(make_prop(property, value));
                 }
@@ -53,18 +56,21 @@ export class Config extends React.Component {
 
     render() {
         return (
-            <section className="config">
-                <h1>Config Information</h1>
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>Config Property</th>
-                            <th>Value</th>
-                        </tr>
-                        {this.state.properties}
-                    </tbody>
-                </table>
-            </section>
+            <div className="total">
+                <Navbar />
+                <section className="config">
+                    <h1>Config Information</h1>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Config Property</th>
+                                <th>Value</th>
+                            </tr>
+                            {this.state.properties}
+                        </tbody>
+                    </table>
+                </section>
+            </div>
         );
     }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import './index.css';
+import { Navbar } from './navbar';
 
 export class Server extends React.Component {
     constructor(props) {
@@ -21,6 +22,8 @@ export class Server extends React.Component {
                     value = "Null";
                 } else if (value === false) {
                     value = "False";
+                } else if (value === true) {
+                    value = "True";
                 }
                 return (
                     <tr>
@@ -45,19 +48,21 @@ export class Server extends React.Component {
 
     render() {
         return (
-            // TODO
-            <section className="server">
-                <h1>Server Information</h1>
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>Server Property</th>
-                            <th>Value</th>
-                        </tr>
-                        {this.state.properties}
-                    </tbody>
-                </table>
-            </section>
+            <div className="total">
+                <Navbar />
+                <section className="server">
+                    <h1>Server Information</h1>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Server Property</th>
+                                <th>Value</th>
+                            </tr>
+                            {this.state.properties}
+                        </tbody>
+                    </table>
+                </section>
+            </div>
         );
     }
 }

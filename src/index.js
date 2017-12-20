@@ -106,7 +106,7 @@ class Configs extends React.Component {
                             <a href={"config/" + config_uuid}>{config_uuid}</a>
                         </td>
                         <td>{data[config_uuid].name}</td>
-                        <td>{status.done ? status.done : "Not Started"}</td>
+                        <td>{status.done ? "True" : "False"}</td>
                         <td>{status.ep_num}</td>
                         <td>{status.server ? status.server : "None"}</td>
                     </tr>
