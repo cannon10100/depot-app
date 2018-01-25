@@ -12,8 +12,8 @@ agent:\n\
   discount_factor: 0.98\n\
   buffer_size: 1000000\n\
   batch_size: 64\n\
-  num_motion_planned: 64\n\
-  num_demonstrations: 100\n\
+  num_motion_planned: 0\n\
+  num_demonstrations: 0\n\
   num_joints: 6\n\
   exploration_rate: 0.01\n\
   tau: 0.05\n\
@@ -22,7 +22,6 @@ agent:\n\
   use_random_goal: True\n\
   planning_group: manipulator\n\
   critic_hidden_layers:\n\
-    - 300\n\
   actor_hidden_layers:\n\
     - 300\n\
     \n\
