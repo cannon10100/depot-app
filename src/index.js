@@ -20,11 +20,12 @@ class Servers extends React.Component {
 
     tick() {
         // Fetch servers
-        fetch("http://localhost:4000/servers")
+        fetch("http://rrl-exp.duckdns.org:4000/servers")
         .then((results) => {
             return results.json();
         }).then((data) => {
             let servers = Object.keys(data).map(server_uuid => {
+                var status_color = data[server_uuid].status === "ONLINE" ? "green" : "red";
                 return (
                     <tr id={server_uuid}>
                         <td>
@@ -32,7 +33,7 @@ class Servers extends React.Component {
                         </td>
                         <td>{data[server_uuid].name}</td>
                         <td>{data[server_uuid].ip}</td>
-                        <td>{data[server_uuid].status}</td>
+                        <td style={{color:status_color}}>{data[server_uuid].status}</td>
                     </tr>
                 )
             });
@@ -91,7 +92,7 @@ class Configs extends React.Component {
 
     tick() {
         // Fetch servers
-        fetch("http://localhost:4000/configs")
+        fetch("http://rrl-exp.duckdns.org:4000/configs")
         .then((results) => {
             return results.json();
         }).then((data) => {
@@ -132,7 +133,7 @@ class Configs extends React.Component {
         if (window.confirm("Are you sure you want to delete config " + event.target.id + "?")) {
             let form = new FormData();
             form.append("config_id", event.target.id);
-            fetch("http://localhost:4000/config/delete", {
+            fetch("http://rrl-exp.duckdns.org:4000/config/delete", {
                 method: "POST",
                 body: form
             }).then(() => {

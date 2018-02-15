@@ -12,7 +12,7 @@ export class Server extends React.Component {
     }
 
     tick() {
-        fetch("http://localhost:4000/server/" + this.props.match.params.server)
+        fetch("http://rrl-exp.duckdns.org:4000/server/" + this.props.match.params.server)
         .then((results) => {
             return results.json();
         }).then((data) => {
