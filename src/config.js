@@ -13,7 +13,7 @@ export class Config extends React.Component {
 
 
     tick() {
-        fetch("http://rrl-exp.duckdns.org:4000/config/" + this.props.match.params.config)
+        fetch("http://localhost:4000/config/" + this.props.match.params.config)
         .then((results) => {
             console.log(results);
             return results.json();

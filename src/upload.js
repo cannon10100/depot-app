@@ -58,7 +58,7 @@ experiment:\n\
                 <Navbar />
                 <div className="upload">
                     <h1>Upload Config</h1>
-                    <form onSubmit={this.handleSubmit} action="http://rrl-exp.duckdns.org:4000/config/upload" method="post">
+                    <form onSubmit={this.handleSubmit} action="http://localhost:4000/config/upload" method="post">
                         <label>
                           Name:
                           <input type="text" value={this.state.name} onChange={this.handleNameChange} name="name"/>
